@@ -11,7 +11,10 @@ function addTodo() {
 
     var li = document.createElement('li');
     li.id = todoList.childElementCount + 1;
-    li.appendChild(document.createTextNode(todoTask));
+
+    var label = document.createElement('label')
+    label.innerHTML = todoTask;
+    label.classList.add("todoLabel");
 
     var editButton = document.createElement("button");
     editButton.innerHTML = "Edit";
@@ -23,6 +26,7 @@ function addTodo() {
     deleteButton.onclick = deleteTodo;
     deleteButton.classList.add("deleteButton");
 
+    li.appendChild(label);
     li.appendChild(editButton);
     li.appendChild(deleteButton);
 
