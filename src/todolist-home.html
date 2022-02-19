@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST</title>
+    <link rel="stylesheet" href="css/site.css">
+    <script src="js/site.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>To-Do List App</h1>
+        <div>
+            <input type="text" name="todo" id="todo" placeholder="Add Todo" required="true">
+            <button onclick="addTodo()">Add</button>
+        </div>
+        <div>
+            <ul id="todolist" class="list-unstyled">
+            </ul>
+        </div>
+    </div>
+</body>
+
+<script>
+    function editTodo() {
+
+    }
+
+    function deleteTodo(args) {
+        var todoList = document.getElementById("todolist");
+
+        if (todoList.childElementCount === 0) {
+            return;
+        }
+        let liItem = (args.target).parentElement;
+        todoList.removeChild(liItem);
+    }
+
+    function addTodo() {
+        var todoTask = document.getElementById("todo").value;
+
+        if (todoTask === "") {
+            return;
+        }
+
+        document.getElementById("todo").value = "";
+
+        var todoList = document.getElementById("todolist");
+
+        var li = document.createElement('li');
+        li.id = todoList.childElementCount + 1;
+        li.appendChild(document.createTextNode(todoTask));
+
+        var editButton = document.createElement("button");
+        editButton.innerHTML = "Edit";
+        editButton.onclick = addTodo;
+        editButton.classList.add("editButton");
+
+        var deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.onclick = deleteTodo;
+        deleteButton.classList.add("deleteButton");
+
+        li.appendChild(editButton);
+        li.appendChild(deleteButton);
+
+        todoList.appendChild(li);
+    }
+</script>
+
+</html>
