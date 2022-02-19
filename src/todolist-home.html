@@ -23,52 +23,6 @@
         </div>
     </div>
 </body>
-
-<script>
-    function editTodo() {
-
-    }
-
-    function deleteTodo(args) {
-        var todoList = document.getElementById("todolist");
-
-        if (todoList.childElementCount === 0) {
-            return;
-        }
-        let liItem = (args.target).parentElement;
-        todoList.removeChild(liItem);
-    }
-
-    function addTodo() {
-        var todoTask = document.getElementById("todo").value;
-
-        if (todoTask === "") {
-            return;
-        }
-
-        document.getElementById("todo").value = "";
-
-        var todoList = document.getElementById("todolist");
-
-        var li = document.createElement('li');
-        li.id = todoList.childElementCount + 1;
-        li.appendChild(document.createTextNode(todoTask));
-
-        var editButton = document.createElement("button");
-        editButton.innerHTML = "Edit";
-        editButton.onclick = addTodo;
-        editButton.classList.add("editButton");
-
-        var deleteButton = document.createElement("button");
-        deleteButton.innerHTML = "Delete";
-        deleteButton.onclick = deleteTodo;
-        deleteButton.classList.add("deleteButton");
-
-        li.appendChild(editButton);
-        li.appendChild(deleteButton);
-
-        todoList.appendChild(li);
-    }
-</script>
+<script src="js/site.js" defer></script>
 
 </html>
