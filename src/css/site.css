@@ -16,7 +16,11 @@ button {
 }
 
 button:hover {
-    background: lightsalmon;
+    transform: scale(1.01);
+}
+
+button:active {
+    box-shadow: none;
 }
 
 h1 {
