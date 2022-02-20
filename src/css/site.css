@@ -8,7 +8,6 @@ button {
     height: 40px;
     font-weight: bold;
     padding: 0 20px;
-    background: white;
     border: none;
     border-radius: 4px;
     color: white;
@@ -21,7 +20,7 @@ button:hover {
 }
 
 h1 {
-    color: blueviolet;
+    color: #593196;
 }
 
 input {
@@ -41,7 +40,7 @@ input {
 }
 
 .container {
-    padding: 5%;
+    padding: 3% 5% 5% 5%;
     margin: auto;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
     height: fit-content;
@@ -64,15 +63,21 @@ input {
 }
 
 .addButton {
-    background: blueviolet;
+    background: #593196;
 }
 
-.deleteButton,
+.deleteButton {
+    background: #e63b31;
+}
+
+.editButton {
+    background: #137ea7;
+}
+
 .cancelButton {
-    background: red;
+    background: #69b6d4;
 }
 
-.editButton,
 .saveButton {
-    background: green;
+    background: #24a428;
 }

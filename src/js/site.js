@@ -1,5 +1,3 @@
-var rememberTodoEditValue = "";
-
 function addTodo() {
     var todoTask = document.getElementById("todo").value;
 
@@ -23,7 +21,6 @@ function editTodo(args) {
     var liItem = args.target.parentElement.parentElement;
 
     var todoTask = liItem.getElementsByClassName("todoLabel")[0].innerHTML;
-    rememberTodoEditValue = todoTask
     var editListItem = createEditListItemDiv(todoTask);
 
     liItem.innerHTML = ""
@@ -42,25 +39,25 @@ function saveEdit(args) {
 
     var todoTask = liItem.getElementsByClassName("todoInputEdit")[0].value;
 
+    if (todoTask === "") {
+        return;
+    }
+
     var listItemDiv = createListItemDiv(todoTask);
 
     liItem.innerHTML = ""
     liItem.appendChild(listItemDiv)
-
-    rememberTodoEditValue = "";
 }
 
 function cancelEdit(args) {
     var liItem = args.target.parentElement.parentElement;
 
-    var todoTask = rememberTodoEditValue;
+    var todoTask = liItem.getElementsByTagName("input")[0].placeholder;
 
     var listItemDiv = createListItemDiv(todoTask);
 
     liItem.innerHTML = ""
     liItem.appendChild(listItemDiv)
-
-    rememberTodoEditValue = "";
 }
 
 function createListItemDiv(todoTask) {
@@ -92,6 +89,7 @@ function createEditListItemDiv(todoTask) {
 
     var label = document.createElement('input')
     label.value = todoTask;
+    label.placeholder = todoTask;
     label.classList.add("todoInputEdit");
 
     var saveButton = document.createElement("button");
