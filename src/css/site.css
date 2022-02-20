@@ -8,10 +8,12 @@ button {
     height: 40px;
     font-weight: bold;
     padding: 0 20px;
-    background: salmon;
+    background: white;
     border: none;
     border-radius: 4px;
     color: white;
+    margin-left: 10px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
 button:hover {
@@ -25,10 +27,17 @@ h1 {
 input {
     border-color: transparent;
     height: 35px;
-    width: 80%;
     padding-left: 10px;
     border-radius: 4px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.todoInput {
+    width: 80%;
+}
+
+.todoInputEdit {
+    width: 61%;
 }
 
 .container {
@@ -41,29 +50,29 @@ input {
 }
 
 .todoLabel {
+    display: inline-block;
     height: 35px;
-    width: 100px;
+    width: 62%;
+    overflow-wrap: break-word;
+    padding: 10px;
 }
 
 .list-unstyled {
     list-style-type: none;
     margin: 0;
+    padding-left: 0;
 }
 
 .addButton {
     background: blueviolet;
-    margin-left: 10px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
-.deleteButton {
+.deleteButton,
+.cancelButton {
     background: red;
-    margin-left: 10px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
-.editButton {
+.editButton,
+.saveButton {
     background: green;
-    margin-left: 10px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }

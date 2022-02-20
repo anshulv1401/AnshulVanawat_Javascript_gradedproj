@@ -1,3 +1,5 @@
+var rememberTodoEditValue = "";
+
 function addTodo() {
     var todoTask = document.getElementById("todo").value;
 
@@ -9,8 +11,60 @@ function addTodo() {
 
     var todoList = document.getElementById("todolist");
 
+    var listItemDiv = createListItemDiv(todoTask)
+
     var li = document.createElement('li');
-    li.id = todoList.childElementCount + 1;
+    li.appendChild(listItemDiv)
+
+    todoList.appendChild(li);
+}
+
+function editTodo(args) {
+    var liItem = args.target.parentElement.parentElement;
+
+    var todoTask = liItem.getElementsByClassName("todoLabel")[0].innerHTML;
+    rememberTodoEditValue = todoTask
+    var editListItem = createEditListItemDiv(todoTask);
+
+    liItem.innerHTML = ""
+    liItem.appendChild(editListItem)
+}
+
+function deleteTodo(args) {
+    var todoList = document.getElementById("todolist");
+
+    let liItem = args.target.parentElement.parentElement;
+    todoList.removeChild(liItem);
+}
+
+function saveEdit(args) {
+    var liItem = args.target.parentElement.parentElement;
+
+    var todoTask = liItem.getElementsByClassName("todoInputEdit")[0].value;
+
+    var listItemDiv = createListItemDiv(todoTask);
+
+    liItem.innerHTML = ""
+    liItem.appendChild(listItemDiv)
+
+    rememberTodoEditValue = "";
+}
+
+function cancelEdit(args) {
+    var liItem = args.target.parentElement.parentElement;
+
+    var todoTask = rememberTodoEditValue;
+
+    var listItemDiv = createListItemDiv(todoTask);
+
+    liItem.innerHTML = ""
+    liItem.appendChild(listItemDiv)
+
+    rememberTodoEditValue = "";
+}
+
+function createListItemDiv(todoTask) {
+    var div = document.createElement('div');
 
     var label = document.createElement('label')
     label.innerHTML = todoTask;
@@ -18,7 +72,7 @@ function addTodo() {
 
     var editButton = document.createElement("button");
     editButton.innerHTML = "Edit";
-    editButton.onclick = addTodo;
+    editButton.onclick = editTodo;
     editButton.classList.add("editButton");
 
     var deleteButton = document.createElement("button");
@@ -26,64 +80,33 @@ function addTodo() {
     deleteButton.onclick = deleteTodo;
     deleteButton.classList.add("deleteButton");
 
-    li.appendChild(label);
-    li.appendChild(editButton);
-    li.appendChild(deleteButton);
+    div.appendChild(label);
+    div.appendChild(editButton);
+    div.appendChild(deleteButton);
 
-    todoList.appendChild(li);
+    return div;
 }
 
-function editTodo(args) {
-    // var todoList = document.getElementById("todolist");
+function createEditListItemDiv(todoTask) {
+    var div = document.createElement('div');
 
-    // if (todoList.childElementCount === 0) {
-    //     return;
-    // }
+    var label = document.createElement('input')
+    label.value = todoTask;
+    label.classList.add("todoInputEdit");
 
-    // var liItem = args.target.parentElement;
+    var saveButton = document.createElement("button");
+    saveButton.innerHTML = "Save";
+    saveButton.onclick = saveEdit;
+    saveButton.classList.add("saveButton");
 
-    // //var liItem = document.createElement('li');
-    // //liItem.id = todoList.childElementCount + 1;
-    // liItem.appendChild(document.createTextNode("chnage"));
+    var cancelButton = document.createElement("button");
+    cancelButton.innerHTML = "Cancel";
+    cancelButton.onclick = cancelEdit;
+    cancelButton.classList.add("cancelButton");
 
-    // var editButton = document.createElement("button");
-    // editButton.innerHTML = "Save";
-    // editButton.onclick = saveEdit;
-    // editButton.classList.add("saveButton");
+    div.appendChild(label);
+    div.appendChild(saveButton);
+    div.appendChild(cancelButton);
 
-    // var deleteButton = document.createElement("button");
-    // deleteButton.innerHTML = "Cancel";
-    // deleteButton.onclick = cancelEdit;
-    // deleteButton.classList.add("cancelButton");
-
+    return div;
 }
-
-function deleteTodo(args) {
-    var todoList = document.getElementById("todolist");
-
-    if (todoList.childElementCount === 0) {
-        return;
-    }
-    let liItem = args.target.parentElement;
-    todoList.removeChild(liItem);
-}
-
-// function saveEdit(args) {
-//     var todoList = document.getElementById("todolist");
-
-//     if (todoList.childElementCount === 0) {
-//         return;
-//     }
-//     let liItem = args.target.parentElement;
-//     todoList.removeChild(liItem);
-// }
-
-// function cancelEdit(args) {
-//     var todoList = document.getElementById("todolist");
-
-//     if (todoList.childElementCount === 0) {
-//         return;
-//     }
-//     let liItem = args.target.parentElement;
-//     todoList.removeChild(liItem);
-// }
